@@ -48,8 +48,9 @@ RUN set -eux; \
     mkdir ${DOCKER_ENTRYPOINT_DIR}
 COPY docker-entrypoint.sh /
 COPY 10-setup.sh ${DOCKER_ENTRYPOINT_DIR}
+RUN chmod +x /docker-entrypoint.sh ${DOCKER_ENTRYPOINT_DIR}/10-setup.sh
 
 EXPOSE 22
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D", "-e"]
