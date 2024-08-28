@@ -65,6 +65,7 @@ fi
 # Make the git user the owner of his home directory
 # Required by the SSH server to allow public key login
 if [ -f "${SSH_AUTHORIZED_KEYS_FILE}" ]; then
+    chmod 600 "${SSH_AUTHORIZED_KEYS_FILE}"
     chown -R "${GIT_USER}":"${GIT_GROUP}" "${GIT_HOME}"
 else
     warn "File '${SSH_AUTHORIZED_KEYS_FILE}' not found."
